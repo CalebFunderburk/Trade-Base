@@ -3,6 +3,7 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 
 // Get all products
 router.get('/', (req, res) => {
+  // Find all products and include the following properties 
   Product.findAll({
     include: [
       {
@@ -15,6 +16,7 @@ router.get('/', (req, res) => {
       }
     ]
   })
+  // Return the promise as json
   .then(productData => res.json(productData))
   .catch(err => {
     console.log(err)
@@ -24,6 +26,7 @@ router.get('/', (req, res) => {
 
 // Get one product
 router.get('/:id', (req, res) => {
+  // Find one product the meets the following criteria
   Product.findOne({
     where: {
       id: req.params.id
@@ -31,7 +34,7 @@ router.get('/:id', (req, res) => {
     include: [
       {
         model: Category,
-        attributes: ['id', 'tag_name']
+        attributes: ['id', 'category_name']
       },
       {
         model: Tag,
@@ -40,10 +43,12 @@ router.get('/:id', (req, res) => {
     ]
   })
   .then(productData => {
+    // Display an error if there is no such product with the specified id
     if (!productData) {
-      res.status(400).json({ message: 'No product found with this id' })
+      res.status(404).json({ message: 'No product found with this id' })
       return
     }
+    // Return the promise as json
     res.json(productData)
   })
   .catch(err => {
@@ -54,6 +59,7 @@ router.get('/:id', (req, res) => {
 
 // Create a new product
 router.post('/', (req, res) => {
+  // Create a product with the defined data
   Product.create({
     product_name: req.body.product_name,
     price: req.body.price,
