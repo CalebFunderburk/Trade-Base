@@ -82,7 +82,7 @@ router.post('/', (req, res) => {
     });
 });
 
-// update product
+// Update a product
 router.put('/:id', (req, res) => {
   // update product data
   Product.update(req.body, {
@@ -124,8 +124,27 @@ router.put('/:id', (req, res) => {
     });
 });
 
+// Delete a product
 router.delete('/:id', (req, res) => {
-  // delete one product by its `id` value
+  // Delete a product that meets the following criteria
+  Product.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+  .then(productData => {
+    // Display an error if there is no such product with the specified id
+    if (!productData) {
+      res.status(404).json({ message: 'No product found with this id'})
+      return
+    }
+    // Return the promise as json
+    res.json(productData)
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json(err)
+  })
 });
 
 module.exports = router;
