@@ -21,7 +21,7 @@ After gathering the necessary tools mentioned above, open the Trade Base project
 <br/>
 Please refer to this video for additional help on getting started:
 
-[Demonstration Video]()
+[Demonstration Video](https://www.youtube.com/watch?v=TW5h4kSiavM)
 
 ## Contributions
 
