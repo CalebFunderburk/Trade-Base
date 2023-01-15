@@ -8,7 +8,7 @@ Trade Base is a content management system that works in the command line to allo
 
 ### User Story
 
-As a business owner looking for a back-end for my ecommerce website, I would like an application that allows me to manage a datebase. When I run the application, I am then able to add, read, edit, or delete data from the database.
+As a business owner looking for a backend for my ecommerce website, I would like an application that allows me to manage a datebase. When I run the application, I am then able to add, read, edit, or delete data from the database.
 
 ### Features
 
